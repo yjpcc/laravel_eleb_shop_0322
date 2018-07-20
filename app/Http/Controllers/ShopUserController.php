@@ -9,6 +9,11 @@ use Illuminate\Validation\Rule;
 
 class ShopUserController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function editInfo(Request $request,ShopUser $shopuser){
         $this->authorize('update',$shopuser);
         $this->validate($request, [
@@ -24,6 +29,7 @@ class ShopUserController extends Controller
 
     public function editPwd(Request $request,ShopUser $shopuser)
     {
+        $this->authorize('update',$shopuser);
         $this->authorize('update',$shopuser);
         $this->validate($request, [
             'oldpassword'=>'required',

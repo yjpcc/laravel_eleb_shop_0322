@@ -3,33 +3,27 @@
     @include('_errors')
     <ol class="breadcrumb">
         <li><a href="">Home</a></li>
-        <li><a href="">Shop</a></li>
+        <li><a href="">Menu</a></li>
         <li>Show</li>
     </ol>
     <div class="jumbotron row">
-        <div class="col-xs-4">
-            <p>名称：<span class="name">{{ $shop->shop_user->name }}</span></p>
-            <p>邮箱：<span class="email">{{ $shop->shop_user->email }}</span></p>
-            <p>所属商家：<span class="email">{{ $shop->shop_name }}</span></p>
-            <p>店铺图片:</p>
-            <p><img src="{{ $shop->shop_img }}" alt="" width="250"></p>
-            {{ csrf_field() }}
-            {{ method_field('PATCH') }}
+        <div class="col-xs-5">
+            <p>菜品名称:　{{ $menu->goods_name }}</p>
+            <p>所属商家:　{{ $menu->shop->shop_name }}</p>
+            <p>所属分类:　{{ $menu->category->name }}</p>
+            <p>菜品价格:　{{ $menu->goods_price }} $</p>
+            <p>菜品图片:</p>
+            <p><img src="{{ $menu->goods_img }}" alt="" width="250"></p>
+            <p>提示信息:　{{ $menu->tips }}</p>
+            <p>菜品描述:　{{ $menu->des }}</p>
         </div>
-        <div class="col-xs-8 info">
-            <p>店铺分类：{{ $shop->shop_category->name }}</p>
-            <p>店铺名称：{{ $shop->shop_name }}</p>
-            <p>店铺评分：{{ $shop->rating }}</p>
-            <p>是否品牌:　<span class=" btn-sm {{ $shop->brand?'btn-success glyphicon glyphicon-ok':'btn-danger glyphicon glyphicon-remove' }}"></span></p>
-            <p>准时送:　　<span class=" btn-sm {{ $shop->on_time?'btn-success glyphicon glyphicon-ok':'btn-danger glyphicon glyphicon-remove' }}"></span></p>
-            <p>蜂鸟配送:　<span class=" btn-sm {{ $shop->fengniao?'btn-success glyphicon glyphicon-ok':'btn-danger glyphicon glyphicon-remove' }}"></span></p>
-            <p>保标记:　　<span class=" btn-sm {{ $shop->bao?'btn-success glyphicon glyphicon-ok':'btn-danger glyphicon glyphicon-remove' }}"></span></p>
-            <p>票标记:　　<span class=" btn-sm {{ $shop->piao?'btn-success glyphicon glyphicon-ok':'btn-danger glyphicon glyphicon-remove' }}"></span></p>
-            <p>准标记:　　<span class=" btn-sm {{ $shop->zhun?'btn-success glyphicon glyphicon-ok':'btn-danger glyphicon glyphicon-remove' }}"></span></p>
-            <p>起送金额:　{{ $shop->start_send }}</p>
-            <p>配送费:　　{{ $shop->send_cost }}</p>
-            <p>店公告:　　{{ $shop->notice }}</p>
-            <p>优惠信息:　{{ $shop->discount }}</p>
+        <div class="col-xs-7">
+            <h2>月销量: <span style="color:red;">{{ $menu->month_sales }}</span></h2>
+            <p>评分:　　　　{{ $menu->rating }}</p>
+            <p>评分数量:　　{{ $menu->rating_count }}</p>
+            <p>满意度评分:　{{ $menu->satisfy_rate }}</p>
+            <p>满意度数量:　{{ $menu->satisfy_count }}</p>
+        </div>
         </div>
 
 

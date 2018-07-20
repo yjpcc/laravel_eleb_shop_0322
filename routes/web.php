@@ -27,3 +27,13 @@ Route::patch('/editPwd/{shopuser}', 'ShopUserController@editPwd')->name('editPwd
 Route::get('login', 'SessionController@login')->name('login');
 Route::post('login', 'SessionController@store')->name('login');
 Route::delete('logout', 'SessionController@logout')->name('logout');
+
+
+//菜品分类
+Route::resource('/menucategorys','MenuCategoryController');
+
+
+//菜品管理
+Route::resource('/menus','MenuController');
+//默认分类
+Route::get('/selected/{menucategory}','MenuCategoryController@selected')->name('selected');

@@ -28,6 +28,8 @@ class SessionController extends Controller
         if(Auth::attempt(['name'=>$request->name,'password'=>$request->password,'status'=>1],$request->remember)){
             if(Auth::user()->shop->status){
                 return redirect()->route('shops.show',[Auth::user()->shop->id])->with('success','登录成功');
+            }else{
+                return redirect()->route('logout')->with('danger','用户名或密码错误')->withInput();
             }
         }else{
             return back()->with('danger','用户名或密码错误')->withInput();

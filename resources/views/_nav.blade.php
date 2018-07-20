@@ -29,12 +29,13 @@
             </form>
             <ul class="nav navbar-nav navbar-right">
                 {{--<li><a href="{{ route('about') }}">关于我们</a></li>--}}
-                {{--<li><a href="{{ route('help') }}">帮助</a></li>--}}
                 @guest
                 <li><a href="{{ route('shops.create') }}">注册</a></li>
                 <li><a href="{{ route('login') }}">登录</a></li>
                 @endguest
                 @auth
+                <li><a href="{{ route('menus.index') }}">菜品管理</a></li>
+                <li><a href="{{ route('menucategorys.index') }}">菜品分类</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ auth()->user()->name }} <span class="caret"></span></a>
                     <ul class="dropdown-menu">
