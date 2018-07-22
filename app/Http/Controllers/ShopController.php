@@ -11,6 +11,12 @@ use Illuminate\Support\Facades\Storage;
 
 class ShopController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth',['except' =>['index','store','create']]);
+    }
+
     public function index()
     {
         $shops=Shop::paginate(5);

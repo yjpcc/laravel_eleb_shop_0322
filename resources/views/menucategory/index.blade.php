@@ -16,7 +16,7 @@
         @foreach ($menucategorys as $menucategory)
             <tr>
                 <td>{{ $menucategory->id }}</td>
-                <td>{{ $menucategory->name }}</td>
+                <td><a href="{{ route('menucategory',[$menucategory]) }}">{{ $menucategory->name }}</a></td>
                 <td>{{ $menucategory->shop->shop_name }}</td>
                 <td>
                     <a href="{{ route('selected',[$menucategory,'selected'=>$menucategory->is_selected]) }}" class="btn-sm {{ $menucategory->is_selected?'btn-success':'btn-warning' }}">{{ $menucategory->is_selected?'是':'否' }}</a></td>

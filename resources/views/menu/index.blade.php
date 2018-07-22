@@ -25,7 +25,7 @@
                 <td><img src="{{ $menu->goods_img }}" alt="" width="50"></td>
                 <td>{{ $menu->goods_name }}</td>
                 <td>{{ $menu->shop->shop_name }}</td>
-                <td>{{ $menu->category->name }}</td>
+                <td><a href="{{ route('menucategory',[$menu->category->id]) }}">{{ $menu->category->name }}</a></td>
                 <td>{{ $menu->goods_price }}</td>
                 <td>{{ $menu->month_sales }}</td>
                 <td>{{ $menu->rating }}</td>
