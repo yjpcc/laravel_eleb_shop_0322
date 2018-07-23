@@ -27,8 +27,13 @@
     <div class="form-group">
         <label class="col-sm-2 control-label">菜品图片</label>
         <div class="col-sm-10">
-            <input type="file" name="goods_img">
-            <img class="thumbnail img-responsive" src="{{ $menu->goods_img }}" width="200" />
+            <input type="hidden" id="img_url" name="goods_img">
+            <div id="uploader-demo">
+                <!--用来存放item-->
+                <div id="fileList" class="uploader-list"></div>
+                <div id="filePicker">选择图片</div>
+            </div>
+            <img class="thumbnail img-responsive" id="img" src="{{ $menu->goods_img }}" width="200" />
         </div>
     </div>
 
@@ -49,7 +54,7 @@
     <div class="form-group">
         <label class="col-sm-2 control-label">菜品描述</label>
         <div class="col-sm-10">
-            <textarea class="form-control" name="des" rows="3" placeholder="菜品描述">{{ $menu->des }}</textarea>
+            <textarea class="form-control" name="description" rows="3" placeholder="菜品描述">{{ $menu->description }}</textarea>
         </div>
     </div>
 
@@ -62,3 +67,6 @@
     </div>
 </form>
 @endsection
+@section('js_upload')
+    @include('upload')
+@stop

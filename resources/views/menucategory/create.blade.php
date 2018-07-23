@@ -23,7 +23,7 @@
     <div class="form-group">
         <label class="col-sm-2 control-label">描述</label>
         <div class="col-sm-10">
-            <textarea class="form-control" name="des" rows="3" placeholder="描述">{{ old('des') }}</textarea>
+            <textarea class="form-control" name="description" rows="3" placeholder="描述">{{ old('description') }}</textarea>
         </div>
     </div>
 

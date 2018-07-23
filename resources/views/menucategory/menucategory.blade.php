@@ -4,11 +4,13 @@
 
    <div class="col-xs-1">
        <div class="btn-group-vertical" role="group" aria-label="...">
+           {{--<a class="btn btn-default" href="{{ route('menucategory',['category'=>'all']) }}" >全部</a>--}}
            @foreach($menucategorys as $menucategory)
            <a class="btn btn-default {{ $menucategory->id==$category->id?'active':'' }}" href="{{ route('menucategory',[$menucategory]) }}" >{{ $menucategory->name }}</a>
            @endforeach
        </div>
    </div>
+
     <div class="col-xs-11">
         <h1>分类【{{ $category->name }}】下的菜品</h1>
         <p>

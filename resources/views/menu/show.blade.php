@@ -15,7 +15,7 @@
             <p>菜品图片:</p>
             <p><img src="{{ $menu->goods_img }}" alt="" width="250"></p>
             <p>提示信息:　{{ $menu->tips }}</p>
-            <p>菜品描述:　{{ $menu->des }}</p>
+            <p>菜品描述:　{{ $menu->description }}</p>
         </div>
         <div class="col-xs-7">
             <h2>月销量: <span style="color:red;">{{ $menu->month_sales }}</span></h2>

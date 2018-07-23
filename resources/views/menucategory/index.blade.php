@@ -20,7 +20,7 @@
                 <td>{{ $menucategory->shop->shop_name }}</td>
                 <td>
                     <a href="{{ route('selected',[$menucategory,'selected'=>$menucategory->is_selected]) }}" class="btn-sm {{ $menucategory->is_selected?'btn-success':'btn-warning' }}">{{ $menucategory->is_selected?'是':'否' }}</a></td>
-                <td>{{ $menucategory->des }}</td>
+                <td>{{ $menucategory->description }}</td>
                 <td>
                     <a class="btn btn-success" href="{{ route('menucategorys.show',[$menucategory]) }}" title="查看"><span class="glyphicon glyphicon-eye-open"></span></a>
                     <a class="btn btn-warning" href="{{ route('menucategorys.edit',[$menucategory]) }}" title="编辑"><span class="glyphicon glyphicon-pencil"></span></a> <form action="{{ route('menucategorys.destroy',[$menucategory]) }}" method="post" style="display: inline">

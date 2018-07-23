@@ -66,15 +66,13 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ route('shops.index') }}">Home</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
                     @endauth
                 </div>
-            @endif
 
             <div class="content">
                 <div class="title m-b-md">
@@ -82,7 +80,12 @@
                 </div>
 
                 <div class="links">
+                    @guest
                     <a href="{{ route('login') }}">立即登录>>></a>
+                    @endguest
+                    @auth
+                    <a href="{{ route('shops.index') }}">立即进入>>></a>
+                    @endauth
                 </div>
             </div>
         </div>

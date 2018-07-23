@@ -43,3 +43,10 @@ Route::get('/selected/{menucategory}','MenuCategoryController@selected')->name('
 //活动列表
 Route::get('/activitys','ActivityController@index')->name('activitys.index');
 Route::get('/activitys/show/{activity}','ActivityController@show')->name('activitys.show');
+
+//图片上传
+Route::post('upload',function (){
+    $storage=\Illuminate\Support\Facades\Storage::disk('oss');
+    $fileName=$storage->putFile('upload',request()->file('file'));
+    return ['fileName'=>$storage->url($fileName)];
+})->name('upload');

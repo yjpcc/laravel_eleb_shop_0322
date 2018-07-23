@@ -26,6 +26,7 @@
         <tr>
             <th>ID</th>
             <th>活动名称</th>
+            <th>活动详情</th>
             <th>活动开始时间</th>
             <th>活动结束时间</th>
             <th>操作</th>
@@ -34,6 +35,7 @@
             <tr>
                 <td>{{ $activity->id }}</td>
                 <td>{{ $activity->title }}</td>
+                <td>{!! substr($activity->content,0,15) !!}</td>
                 <td>{{ $activity->start_time }}</td>
                 <td>{{ $activity->end_time }}</td>
                 <td>

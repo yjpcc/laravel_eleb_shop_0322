@@ -10,7 +10,7 @@
             <p>分类名称:　{{ $menucategory->name }}</p>
             <p>所属商家:　　{{ $menucategory->shop->shop_name }}</p>
             <p>是否默认分类: <span class="btn-sm {{ $menucategory->is_selected?'btn-success':'btn-warning' }}">{{ $menucategory->is_selected?'是':'否' }}</span></p>
-            <p>分类描述:　{{ $menucategory->des }}</p>
+            <p>分类描述:　{{ $menucategory->description }}</p>
         </div>
 
 

@@ -73,12 +73,8 @@ class ShopController extends Controller
         if(!$request->discount){
             $data['discount']='';
         }
-        if ($request->shop_img) {
-            $result=$request->shop_img->store('public/shop_img');
-            if ($result) {
-                $data['shop_img'] = url(Storage::url($result));
-            }
-        }
+
+
         DB::beginTransaction();
         try{
             $create=Shop::create($data);
@@ -140,12 +136,7 @@ class ShopController extends Controller
 //            'start_send'=>$request->start_send,
 //            'send_cost'=>$request->send_cost,
 //        ];
-//        if ($request->shop_img) {
-//            $result=$request->shop_img->store('public/shop_img');
-//            if ($result) {
-//                $data['shop_img'] = url(Storage::url($result));
-//            }
-//        }
+
 //
 //        $request->brand?$data['brand']=1:$data['brand']=0;
 //
