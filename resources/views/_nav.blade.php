@@ -22,12 +22,6 @@
                 <li><a href="{{ route('shops.create') }}">商家注册</a></li>
 
             </ul>
-            <form class="navbar-form navbar-left">
-                <div class="form-group">
-                    <input type="text" name="keywords" class="form-control" placeholder="Search">
-                </div>
-                <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-            </form>
             <ul class="nav navbar-nav navbar-right">
                 {{--<li><a href="{{ route('about') }}">关于我们</a></li>--}}
                 @guest
@@ -37,6 +31,15 @@
                 @auth
                 <li><a href="{{ route('menus.index') }}">菜品管理</a></li>
                 <li><a href="{{ route('menucategorys.index') }}">菜品分类</a></li>
+                <li><a href="{{ route('orders.index') }}">订单管理</a></li>
+                <li><a href="{{ route('orders.count') }}">订单销量统计</a></li>
+                {{--<li class="dropdown">--}}
+                    {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">订单销量统计 <span class="caret"></span></a>--}}
+                    {{--<ul class="dropdown-menu">--}}
+                        {{--<li><a href="{{ route('orders.count') }}">订单统计</a></li>--}}
+                        {{--<li><a href="">菜品销量</a></li>--}}
+                    {{--</ul>--}}
+                {{--</li>--}}
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ auth()->user()->name }} <span class="caret"></span></a>
                     <ul class="dropdown-menu">

@@ -50,3 +50,17 @@ Route::post('upload',function (){
     $fileName=$storage->putFile('upload',request()->file('file'));
     return ['fileName'=>$storage->url($fileName)];
 })->name('upload');
+
+//统计
+Route::get('/orders/count','OrderController@count')->name('orders.count');
+//按天统计
+Route::get('/orders/day','OrderController@day')->name('orders.day');
+//按月统计
+Route::get('/orders/month','OrderController@month')->name('orders.month');
+
+
+//订单管理
+Route::get('/orders','OrderController@index')->name('orders.index');
+Route::get('/orders/{order}','OrderController@show')->name('orders.show');
+Route::get('/orders/cancel/{order}','OrderController@cancel')->name('orders.cancel');
+Route::get('/orders/send/{order}','OrderController@send')->name('orders.send');

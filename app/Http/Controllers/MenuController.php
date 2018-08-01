@@ -17,7 +17,7 @@ class MenuController extends Controller
 
     public function index()
     {
-        $menus=Menu::where("shop_id",Auth::user()->id)->paginate(10);
+        $menus=Menu::where("shop_id",Auth::user()->shop_id)->paginate(10);
         return view('menu/index', compact('menus'));
     }
 
@@ -28,7 +28,7 @@ class MenuController extends Controller
 
     public function create()
     {
-        $menucategorys=MenuCategory::where("shop_id",Auth::user()->id)->get();
+        $menucategorys=MenuCategory::where("shop_id",Auth::user()->shop_id)->get();
         return view('menu/create',compact('menucategorys'));
     }
 
@@ -52,7 +52,7 @@ class MenuController extends Controller
             'captcha.captcha' => '验证码错误',
         ]);
         $data = $request->all();
-        $data['shop_id']=Auth::user()->id;
+        $data['shop_id']=Auth::user()->shop_id;
         if(!$request->tips){
             $data['tips']='';
         }
@@ -65,7 +65,7 @@ class MenuController extends Controller
     public function edit(Menu $menu)
     {
         //$this->authorize('update',$menu);
-        $menucategorys=MenuCategory::where("shop_id",Auth::user()->id)->get();
+        $menucategorys=MenuCategory::where("shop_id",Auth::user()->shop_id)->get();
         return view('menu.edit', compact('menu','menucategorys'));
     }
 

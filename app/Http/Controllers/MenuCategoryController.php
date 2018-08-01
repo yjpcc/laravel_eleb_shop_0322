@@ -17,7 +17,7 @@ class MenuCategoryController extends Controller
 
     public function index()
     {
-        $id=Auth::user()->id;
+        $id=Auth::user()->shop_id;
         $count=MenuCategory::where(['shop_id'=>$id,'is_selected'=>1])->count();
         $num=MenuCategory::where(['shop_id'=>$id])->count();
         if($num>0&&$count==0){
@@ -52,7 +52,7 @@ class MenuCategoryController extends Controller
             'captcha.captcha' => '验证码错误',
         ]);
         $data = $request->all();
-        $id=Auth::user()->id;
+        $id=Auth::user()->shop_id;
         if($request->is_selected){
             MenuCategory::where(['shop_id'=>$id,'is_selected'=>1])
                 ->update(['is_selected'=>0]);
@@ -61,7 +61,7 @@ class MenuCategoryController extends Controller
         }
 
         $data['type_accumulation']=str_random(16);
-        $data['shop_id']=Auth::user()->id;
+        $data['shop_id']=Auth::user()->shop_id;
         MenuCategory::create($data);
         return redirect()->route('menucategorys.index')->with("success", "添加成功");
     }
@@ -88,7 +88,7 @@ class MenuCategoryController extends Controller
         ]);
         $data = $request->all();
         if($request->is_selected){
-            $id=Auth::user()->id;
+            $id=Auth::user()->shop_id;
             MenuCategory::where(['shop_id'=>$id,'is_selected'=>1])
                 ->where('id','<>',$menucategory->id)
                 ->update(['is_selected'=>0]);
@@ -102,7 +102,7 @@ class MenuCategoryController extends Controller
     public function destroy(MenuCategory $menucategory)
     {
         //$this->authorize('update',$menucategory);
-        if(Menu::where(['category_id'=>$menucategory->id,'shop_id'=>Auth::user()->id])->count()>0){
+        if(Menu::where(['category_id'=>$menucategory->id,'shop_id'=>Auth::user()->shop_id])->count()>0){
             session()->flash("success", "该分类有菜品不能删除");
         }else{
             $menucategory->delete();
@@ -112,7 +112,7 @@ class MenuCategoryController extends Controller
     }
 
     public function selected(Request $request,MenuCategory $menucategory){
-        $id=Auth::user()->id;
+        $id=Auth::user()->shop_id;
         if($request->is_selected){
             $menucategory->update(['is_selected'=>0]);
             return redirect()->route('menucategorys.index')->with("success", "修改成功");
@@ -127,7 +127,7 @@ class MenuCategoryController extends Controller
     public function menucategory(Request $request,MenuCategory $menucategory)
     {
         $category=$menucategory;
-        $where[]=["shop_id",Auth::user()->id];
+        $where[]=["shop_id",Auth::user()->shop_id];
 //        if($request->category){
 //
 //        }
@@ -150,7 +150,7 @@ class MenuCategoryController extends Controller
             $keyword['maxprice']=$request->maxprice;
         }
 //dd($where);
-        $menucategorys=MenuCategory::where("shop_id",Auth::user()->id)->get();
+        $menucategorys=MenuCategory::where("shop_id",Auth::user()->shop_id)->get();
         $menus=Menu::where($where)->paginate(1);
         return view('menucategory/menucategory',compact('menucategorys','menus','category','keyword'));
     }

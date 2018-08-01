@@ -14,7 +14,7 @@
         @foreach ($shops as $shop)
             <tr>
                 <td>{{ $shop->id }}</td>
-                <td>{{ $shop->shop_category_id }}</td>
+                <td>{{ $shop->shop_category->name }}</td>
                 <td>{{ $shop->shop_name }}</td>
                 <td><img src="{{ $shop->shop_img }}" alt="" width="100"></td>
             </tr>

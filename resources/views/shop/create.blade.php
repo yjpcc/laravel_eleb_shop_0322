@@ -47,7 +47,8 @@
     <div class="form-group">
         <label for="inputTitle1" class="col-sm-2 control-label">店铺名称</label>
         <div class="col-sm-10">
-            <input type="text" name="shop_name" class="form-control"  placeholder="店铺名称" value="{{ old('name') }}">
+            <input type="text" name="shop_name" class="form-control"  placeholder="店铺名称" value="{{ old('shop_name') }}">
+            _
         </div>
     </div>
 
