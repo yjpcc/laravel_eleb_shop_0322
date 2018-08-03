@@ -89,6 +89,9 @@ class MenuController extends Controller
         if(!$request->tips){
             $data['tips']='';
         }
+        if(!$request->goods_img){
+            unset($data['goods_img']);
+        }
 
         $menu->update($data);
         return redirect()->route('menus.index')->with("success", "修改成功");
