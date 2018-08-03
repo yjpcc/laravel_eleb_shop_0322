@@ -64,3 +64,11 @@ Route::get('/orders','OrderController@index')->name('orders.index');
 Route::get('/orders/{order}','OrderController@show')->name('orders.show');
 Route::get('/orders/cancel/{order}','OrderController@cancel')->name('orders.cancel');
 Route::get('/orders/send/{order}','OrderController@send')->name('orders.send');
+
+//抽奖活动
+Route::get('/events','EventController@index')->name('events.index');
+Route::get('/events/{event}','EventController@show')->name('events.show');
+//报名
+Route::get('/signup','EventController@signup')->name('events.signup');
+//查看中奖列表
+Route::get('/eventprizes','EventPrizeController@index')->name('eventprizes.index');

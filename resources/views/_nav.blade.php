@@ -33,13 +33,13 @@
                 <li><a href="{{ route('menucategorys.index') }}">菜品分类</a></li>
                 <li><a href="{{ route('orders.index') }}">订单管理</a></li>
                 <li><a href="{{ route('orders.count') }}">订单销量统计</a></li>
-                {{--<li class="dropdown">--}}
-                    {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">订单销量统计 <span class="caret"></span></a>--}}
-                    {{--<ul class="dropdown-menu">--}}
-                        {{--<li><a href="{{ route('orders.count') }}">订单统计</a></li>--}}
-                        {{--<li><a href="">菜品销量</a></li>--}}
-                    {{--</ul>--}}
-                {{--</li>--}}
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">抽奖活动 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ route('events.index') }}">抽奖活动列表</a></li>
+                        <li><a href="{{ route('eventprizes.index') }}">抽奖结果</a></li>
+                    </ul>
+                </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ auth()->user()->name }} <span class="caret"></span></a>
                     <ul class="dropdown-menu">
