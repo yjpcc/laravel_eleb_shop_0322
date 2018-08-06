@@ -42,6 +42,9 @@ Route::get('/selected/{menucategory}','MenuCategoryController@selected')->name('
 
 //活动列表
 Route::get('/activitys','ActivityController@index')->name('activitys.index');
+
+//Route::redirect('/activitys','activitys/activity.html');
+
 Route::get('/activitys/show/{activity}','ActivityController@show')->name('activitys.show');
 
 //图片上传

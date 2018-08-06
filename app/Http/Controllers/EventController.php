@@ -31,7 +31,9 @@ class EventController extends Controller
         }else{
             $events=event::paginate(10);
         }
-        return view('event/index', compact('events','status'));
+        $content=view('event/index', compact('events','status'));
+        file_put_contents('event.html',$content);
+        return redirect('event.html');
     }
 
     public function show(Event $event)
@@ -41,7 +43,9 @@ class EventController extends Controller
             ->count();
         $signup_sum=EventMember::where('events_id',$event->id)->count();
         $wins=EventPrize::where('member_id','<>',0)->get();
-        return view('event/show', compact('event','count','signup_sum','wins'));
+        $content=view('event/show', compact('event','count','signup_sum','wins'));
+        file_put_contents($event->id.'.html',$content);
+        return redirect($event->id.'.html');
     }
 
     public function signup(Request $request){

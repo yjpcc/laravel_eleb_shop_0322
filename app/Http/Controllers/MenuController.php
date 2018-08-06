@@ -6,6 +6,7 @@ use App\Model\Menu;
 use App\Model\MenuCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Storage;
 
 class MenuController extends Controller
@@ -59,6 +60,7 @@ class MenuController extends Controller
 
 
         Menu::create($data);
+        Redis::del('shop');
         return redirect()->route('menus.index')->with("success", "添加成功");
     }
 
@@ -94,6 +96,7 @@ class MenuController extends Controller
         }
 
         $menu->update($data);
+        Redis::del('shop');
         return redirect()->route('menus.index')->with("success", "修改成功");
     }
 
@@ -101,6 +104,7 @@ class MenuController extends Controller
     {
         //$this->authorize('update',$menu);
         $menu->delete();
+        Redis::del('shop');
         return redirect()->route('menus.index')->with("success", "删除成功");
     }
 }

@@ -7,6 +7,7 @@ use App\Model\MenuCategory;
 use App\Model\Shop;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redis;
 
 class MenuCategoryController extends Controller
 {
@@ -63,6 +64,7 @@ class MenuCategoryController extends Controller
         $data['type_accumulation']=str_random(16);
         $data['shop_id']=Auth::user()->shop_id;
         MenuCategory::create($data);
+        Redis::del('shop');
         return redirect()->route('menucategorys.index')->with("success", "添加成功");
     }
 
@@ -96,6 +98,7 @@ class MenuCategoryController extends Controller
             $data['is_selected']=0;
         }
         $menucategory->update($data);
+        Redis::del('shop');
         return redirect()->route('menucategorys.index')->with("success", "修改成功");
     }
 
@@ -107,7 +110,9 @@ class MenuCategoryController extends Controller
         }else{
             $menucategory->delete();
             session()->flash("success", "删除成功");
+            Redis::del('shop');
         }
+
         return redirect()->route('menucategorys.index');
     }
 
@@ -152,6 +157,7 @@ class MenuCategoryController extends Controller
 //dd($where);
         $menucategorys=MenuCategory::where("shop_id",Auth::user()->shop_id)->get();
         $menus=Menu::where($where)->paginate(1);
+
         return view('menucategory/menucategory',compact('menucategorys','menus','category','keyword'));
     }
 }
