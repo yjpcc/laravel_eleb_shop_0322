@@ -17,7 +17,7 @@
 
             <ul class="nav navbar-nav">
                 <li><a href=""><span class="glyphicon glyphicon-home"></span>主页 <span class="sr-only">(current)</span></a></li>
-                <li><a href="{{ route('activitys.index') }}">活动列表</a></li>
+                <li><a href="http://admin.eleb.com/html/activity.html" target="_blank">活动列表</a></li>
                 <li><a href="{{ route('shops.index') }}">商家信息</a></li>
                 <li><a href="{{ route('shops.create') }}">商家注册</a></li>
             </ul>

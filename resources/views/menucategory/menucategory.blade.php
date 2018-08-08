@@ -75,6 +75,6 @@
                 </td>
             </tr>
         </table>
-        {{ $menus->appends($keyword)->links() }}
+        {{--{{ $menus->appends($keyword)->links() }}--}}
     </div>
 @endsection

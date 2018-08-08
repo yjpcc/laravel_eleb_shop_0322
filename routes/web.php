@@ -75,3 +75,17 @@ Route::get('/events/{event}','EventController@show')->name('events.show');
 Route::get('/signup','EventController@signup')->name('events.signup');
 //查看中奖列表
 Route::get('/eventprizes','EventPrizeController@index')->name('eventprizes.index');
+
+
+Route::get('test', function () {
+    $cl = new \App\SphinxClient ();
+    $cl->SetServer ( '127.0.0.1', 9312);
+    $cl->SetConnectTimeout ( 10 );
+    $cl->SetArrayResult ( true );
+// $cl->SetMatchMode ( SPH_MATCH_ANY);
+    $cl->SetMatchMode ( SPH_MATCH_EXTENDED2);
+    $cl->SetLimits(0, 1000);
+    $info ='瘦肉';
+    $res = $cl->Query($info, 'menu');//shopstore_search
+    dd($res);
+});

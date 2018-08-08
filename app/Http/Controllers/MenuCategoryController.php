@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Model\Menu;
 use App\Model\MenuCategory;
 use App\Model\Shop;
+use App\SphinxClient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redis;
@@ -133,30 +134,42 @@ class MenuCategoryController extends Controller
     {
         $category=$menucategory;
         $where[]=["shop_id",Auth::user()->shop_id];
-//        if($request->category){
-//
-//        }
         $where[]=['category_id',$menucategory->id];
-
         //判断是否搜索名称
         $keyword=[];
-        if($request->name){
-            $where[]=['goods_name','like',"%{$request->name}%"];
-            $keyword['name']=$request->name;
-        }
-        //判断最小价格
         if($request->minprice){
             $where[]=['goods_price','>=',$request->minprice];
             $keyword['minprice']=$request->minprice;
         }
+
         //判断最大价格
         if($request->maxprice){
             $where[]=['goods_price','<=',$request->maxprice];
             $keyword['maxprice']=$request->maxprice;
         }
-//dd($where);
-        $menucategorys=MenuCategory::where("shop_id",Auth::user()->shop_id)->get();
-        $menus=Menu::where($where)->paginate(1);
+        if($request->name){
+            $cl = new SphinxClient();
+            $cl->SetServer ( '127.0.0.1', 9312);
+            $cl->SetConnectTimeout ( 10 );
+            $cl->SetArrayResult ( true );
+            $cl->SetMatchMode ( SPH_MATCH_EXTENDED2);
+            $cl->SetLimits(0, 1000);
+            $info =$request->name;
+            $res = $cl->Query($info, 'menu');
+            $menus=[];
+            if(array_key_exists('matches',$res)) {
+
+                foreach ($res['matches'] as $v){
+                    $id[]=$v['id'];
+                }
+                    $menus = Menu::where($where)
+                        ->whereIn('id',$id)
+                        ->paginate(1);
+            }
+        }else{
+            $menus=Menu::where($where)->paginate(10);
+        }
+            $menucategorys=MenuCategory::where("shop_id",Auth::user()->shop_id)->get();
 
         return view('menucategory/menucategory',compact('menucategorys','menus','category','keyword'));
     }
